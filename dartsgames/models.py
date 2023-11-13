@@ -1,6 +1,11 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+    is_member = models.BooleanField(default= False);
+    
 
 class Game_master(models.Model):
 
@@ -15,6 +20,7 @@ class Game_result(models.Model):
     score = models.CharField(max_length=50, verbose_name= 'スコア')
     play_time = models.IntegerField(blank= True, null= True, verbose_name= '１ゲームにかかった時間')
     create_at = models.DateTimeField(default= timezone.now, verbose_name= '更新日時')
+    
     
     def __str__(self):
         return self.score

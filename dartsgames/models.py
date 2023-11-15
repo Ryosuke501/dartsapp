@@ -17,7 +17,8 @@ class Game_master(models.Model):
 class Game_result(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE, verbose_name= 'ユーザー名')
     game_name = models.ForeignKey(Game_master , on_delete=models.CASCADE)
-    score = models.CharField(max_length=50, verbose_name= 'スコア')
+    score = models.IntegerField(null=True, verbose_name= 'スコア')
+    round = models.PositiveIntegerField(null=True, verbose_name='ラウンド',)
     play_time = models.IntegerField(blank= True, null= True, verbose_name= '１ゲームにかかった時間')
     create_at = models.DateTimeField(default= timezone.now, verbose_name= '更新日時')
     
